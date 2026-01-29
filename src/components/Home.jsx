@@ -12,6 +12,7 @@ function Home() {
     const [content, setContent] = useState("");
     const [shareUrl, setShareUrl] = useState("");
 
+    const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:8000";
     const handleContentChange = (e) => {
         setContent(e.target.value)
     }
@@ -30,7 +31,7 @@ function Home() {
 
     const handleSubmit = async(e)=>{
           e.preventDefault();
-          const res = await fetch("https://pastebin-lite-cckq.onrender.com/api/pastes", {
+          const res = await fetch(`${API_BASE}/api/pastes`, {
             method: "POST",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({
@@ -151,3 +152,4 @@ function Home() {
 }
 
 export default Home
+
